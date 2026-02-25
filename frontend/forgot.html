@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Forgot Password</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="auth-card">
+  <h1>Forgot Password</h1>
+  <input id="email" placeholder="Enter username/email">
+  <button onclick="sendReset()">Send Reset Link</button>
+</div>
+
+<script>
+async function sendReset(){
+  const email = document.getElementById("email").value;
+
+if(!email){
+    alert("Email required");
+    return;
+  }
+
+  const res = await fetch("http://localhost:3000/api/forgot-password",{
+    method:"POST",
+    headers:{"Content-Type":"application/json"},
+    body: JSON.stringify({ email })
+  });
+
+  const data = await res.json();
+  alert(data.message || data.error);
+}
+</script>
+
+</body>
+</html>
