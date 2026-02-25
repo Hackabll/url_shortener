@@ -1,4 +1,4 @@
-const API = "http://localhost:3000";
+const API = "window.location.origin";
 let allUrls = [];
 const strongPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
