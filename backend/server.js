@@ -11,7 +11,15 @@ const urlRoutes = require("./routes/urlRoutes");
 const redirectRoutes = require("./routes/redirectRoutes");
 const analyticsRoutes = require("./routes/analyticsRoutes");
 const qrRoutes = require("./routes/qrRoutes");
+const db = require("./config/db");
 
+db.query("SELECT 1", (err) => {
+  if (err) {
+    console.error("DB CONNECT ERROR:", err);
+  } else {
+    console.log("DB CONNECTED SUCCESSFULLY ✅");
+  }
+});
 const app = express();
 app.use(express.static(path.join(__dirname, "../frontend")));
 
