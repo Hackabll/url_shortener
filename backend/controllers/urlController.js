@@ -18,7 +18,7 @@ async function verifyCaptcha(token) {
 
   return response.data.success;
 }
-console.log("BODY RECEIVED:", req.body);
+
 exports.createUrls = async (req,res) => {
 
     const{longUrl , customCode , expiryDays} = req.body;
