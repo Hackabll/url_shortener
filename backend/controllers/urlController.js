@@ -18,7 +18,7 @@ async function verifyCaptcha(token) {
 
   return response.data.success;
 }
-
+console.log("BODY RECEIVED:", req.body);
 exports.createUrls = async (req,res) => {
 
     const{longUrl , customCode , expiryDays} = req.body;
@@ -33,7 +33,7 @@ exports.createUrls = async (req,res) => {
     if(!captchaToken){
       return res.status(400).json({error:"Captcha Is required"});
     }
-    const isHuman = verifyCaptcha(captchaToken);
+    const isHuman = await verifyCaptcha(captchaToken);
     if(!isHuman){
       return res.status(400).json({error:"Captcha verification failed"});
     }
