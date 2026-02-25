@@ -51,7 +51,10 @@ exports.login = (req,res)=>{
     "SELECT * FROM users WHERE username=?",
     [username],
     async (err,result)=>{
-      if(err) return res.status(500).json({error:"Database Error"});
+      if (err) {
+        console.error("LOGIN SQL ERROR:", err);
+        return res.status(500).json({ error: err.message });
+      }
       if(result.length === 0)
         return res.status(401).json({error:"Invalid credentials"});
 
