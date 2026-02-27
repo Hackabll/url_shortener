@@ -46,7 +46,7 @@ exports.signup = async(req,res) => {
 
 exports.login = (req,res)=>{
   const { username , password } = req.body;
-
+console.log("BODY RECEIVED:", req.body);
   db.query(
     "SELECT * FROM users WHERE username=?",
     [username],
