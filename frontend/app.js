@@ -212,3 +212,7 @@ async function logout(){
     localStorage.clear();
     window.location.href="login.html";
 }
+
+function changeLocation(){
+    window.location.href="signup.html";
+}
