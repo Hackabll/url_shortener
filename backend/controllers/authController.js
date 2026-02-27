@@ -36,7 +36,7 @@ exports.signup = async(req,res) => {
             return res.status(409).json({error:"Username or email already exist"});
           return res.status(500).json({error:"Database Error"});
         }
-        res.json({message:"Signup Successfully"});
+        res.json({message:"Signup Successfull"});
       }
     );
   }catch{
