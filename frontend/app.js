@@ -33,7 +33,12 @@ async function signup(){
     });
 
     const data  = await res.json();
-    alert(data.message || data.error);
+
+      if(!res.ok) {
+        alert(data.error);
+        return;              
+    }
+    alert(data.message);
     window.location.href="login.html";
 }
 
