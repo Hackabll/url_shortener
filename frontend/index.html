@@ -1,10 +1,58 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta http-equiv="refresh" content="0; url=signup.html" />
-  <title>Redirecting...</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <p>Redirecting to login...</p>
+
+<div class="dashboard">
+
+  <h2>Create Short URL</h2>
+
+  <div class="create-box">
+
+    <input id="longUrl" class="long-url" placeholder="Long URL">
+
+    <input type="date" id="expiryDate" class="date-input">
+
+    <input id="customCode" class="custom-code" placeholder="Custom code (optional)">
+
+    <input id="searchInput" 
+           placeholder="Search your links..." 
+           class="search-box">
+
+
+    <div class="captcha-wrapper">
+      <div class="g-recaptcha"></div>
+    </div>
+
+    <button onclick="changeLocation()" class="create-btn">Create</button>
+
+  </div>
+
+  <h3>Your URLs</h3>
+  <ul id="list" class="url-list"></ul>
+
+  <div class="qr-box">
+    <img id="qr" width="200">
+  </div>
+
+  <div class="analytics-box">
+    <canvas id="chart"></canvas>
+  </div>
+
+</div>
+
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="app.js"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", loadUrls);
+  setInterval(loadUrls, 10000);
+</script>
+
 </body>
 </html>
