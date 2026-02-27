@@ -5,20 +5,20 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
+<div class="dashboard">
   <h2>Create Short URL</h2>
 
-  <div>
-    <input id="longUrl" placeholder="Long URL">
+  <div class="create-box">
+    <input id="longUrl" class="long-url" placeholder="Long URL">
 
-    <input type="date" id="expiryDate">
+    <input type="date" class="date-input" id="expiryDate">
 
-    <input id="customCode" placeholder="Custom code (optional)">
+    <input id="customCode" class="custom-code"  placeholder="Custom code (optional)">
 
     <button onclick="changeLocation()">Create</button>
   </div>
 
   <script src="app.js"></script>
-
+</div>
 </body>
 </html>
