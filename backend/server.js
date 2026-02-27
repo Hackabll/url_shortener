@@ -21,16 +21,24 @@ db.query("SELECT 1", (err) => {
   }
 });
 const app = express();
-app.use(express.static(path.join(__dirname, "../frontend")));
 
-app.use(express.json());
+app.post("/api/test", (req, res) => {
+  console.log("TEST ROUTE HIT");
+  res.json({ success: true });
+});
+
+
 app.use(cors());
+app.use(express.json());
 app.use(limiter);
 
-app.use("/api", authRoutes);     
+app.use("/api/auth", authRoutes);     
 app.use("/api/urls", urlRoutes);
 app.use("/api/analytics", analyticsRoutes);
 app.use("/api/qrcode", qrRoutes);
+
+app.use(express.static(path.join(__dirname, "../frontend")));
+
 app.use("/", redirectRoutes);
 
 const PORT = process.env.PORT || 3000;

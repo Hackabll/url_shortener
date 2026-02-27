@@ -20,7 +20,7 @@ async function verifyCaptcha(token) {
 }
 
 exports.createUrls = async (req,res) => {
-
+console.log("BODY RECEIVED:", req.body);
     const{longUrl , customCode , expiryDays} = req.body;
     if(!longUrl){
         return res.status(400).json({error : "Error Url is required"});
