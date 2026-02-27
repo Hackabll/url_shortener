@@ -1,4 +1,12 @@
-const API = "window.location.origin";
+const isLocal =
+  window.location.hostname === "localhost" ||
+  window.location.hostname === "127.0.0.1";
+
+const API = isLocal
+  ? "http://localhost:3000"
+  : window.location.origin;
+
+
 let allUrls = [];
 const strongPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
@@ -18,32 +26,40 @@ async function signup(){
         alert("Password must be at least 8 characters with uppercase, lowercase, number and special character");
         return;
     }
-    const res = await fetch(API  + "/api/signup",{
+    const res = await fetch(API  + "/api/auth/signup",{
         method:"POST",
         headers : {"Content-Type":"application/json"},
         body:JSON.stringify({username,email,password})
     });
 
     const data  = await res.json();
-    alert(JSON.stringify(data.message));
+    alert(data.message || data.error);
     window.location.href="login.html";
 }
 
-async function login(){
+async function login() {
     const username = document.getElementById("username").value.trim();
     const password = document.getElementById("password").value.trim();
 
-    const res  = await fetch(API + "/api/login",{
-        method:"POST",
-        headers : {"Content-Type":"application/json"},
-        body: JSON.stringify({username,password})
-    })
+    const res = await fetch(API + "/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password })
+    });
+
     const data = await res.json();
-    if(data.token){
+
+    console.log("LOGIN RESPONSE:", data);
+
+    if (data.token) {
         saveToken(data.token);
-        window.location.href="dashboard.html";
-    }else{
-        alert(data.message || "Login Failed");
+        window.location.href = "dashboard.html";
+    } else if (data.error) {
+        alert(data.error);
+    } else if (data.message) {
+        alert(data.message);
+    } else {
+        alert("Login Failed");
     }
 }
 
